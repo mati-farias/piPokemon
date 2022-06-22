@@ -1,0 +1,10 @@
+img {
+    max-width: 40%;
+    max-height: 40%;
+   }
+
+button {
+    display: flex;
+    align-self: center;
+    width: 50%
+}

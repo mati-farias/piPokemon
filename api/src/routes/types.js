@@ -1,20 +1,31 @@
 
 const { Router } = require("express");
-// const fetch = require("node-fetch");
 const axios = require('axios')
 const { Type } = require("../db.js");
+const { getPokemonTypes } = require("../methods.js");
 
 const router = Router();
 
 router.get('/', async (req, res) => {
-    const api = await axios('https://pokeapi.co/api/v2/type');
-    const types = api.data
-    for( t of types.results ) {
-        const existe = await Type.findOne({where: { name: t.name }})
-        if(existe) return res.json(await Type.findAll())
-        await Type.create({ name: t.name})
+    try {
+        const api = await axios('https://pokeapi.co/api/v2/type');
+        const types = api.data.results.map(e => e.name)
+        
+        for (let i = 0; i<types.length; i++){
+            await Type.findOrCreate({where: {name: types[i]}})
+           
+        }
+        let answer = await Type.findAll()
+        return res.send(answer);
+    } catch (error) {
+        console.log(error)
+        res.status(400).send(error.message)
     }
-    res.json(await Type.findAll());
+
+   
+   
+    
+    
 })
 
 
