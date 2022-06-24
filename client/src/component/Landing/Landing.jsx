@@ -1,8 +1,8 @@
 import React,{useEffect} from 'react'
 import { Link } from 'react-router-dom'
-import img from '../../images/wallpaper.jpg'
 import { useDispatch } from 'react-redux';
-import { getAllPokemon } from '../../redux/actions/index.js'
+import { getAllPokemon, getAllTypes} from '../../redux/actions/index.js'
+import './Landing.css'
 
 // DESCARGAR 4k VIDEO DOWNLOADER
 
@@ -11,15 +11,19 @@ function Landing() {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(getAllPokemon())
-  },[])
+    dispatch(getAllTypes())
+  },[dispatch])
+  
   return (
-    <div>
+    <div className="landing">
+      <div >
         <h1>Bienvenido a tu Pokedex!</h1>
-        
-        <Link to='/home'>
-            IR A POKEMON!
+        <button className='glow-on-hover'>
+        <Link to='/home' className='linkto'>
+           <h2>Pokedex</h2>
         </Link>
-        <img src={img} alt="pokeWallPaper"/>
+        </button>
+      </div>
     </div>
   )
 }

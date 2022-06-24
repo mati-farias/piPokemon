@@ -1,31 +1,57 @@
-import React, {useEffect} from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { getAllPokemon } from '../../redux/actions/index.js'
+import React from 'react'
+import PokeList from '../PokeList/PokeList';
 import './Home.css'
+import Navbar from '../Navbar/Navbar';
+import { Link } from 'react-router-dom'
+import { useState, useEffect} from 'react'
+import { useSelector } from 'react-redux';
+import Paginado from '../Paginado/Paginado';
+
+
 
 const Home = () => {
 
-  const dispatch = useDispatch()
+  const allPokemons = useSelector(state => state.allPokemons)
+
+
+  const [currentPage, setCurrentPage] = useState(1)
+  const [pokemonsPerPage, setPokemonsPerPage] = useState(12)
+
+  const indexOfLastPokemon = currentPage * pokemonsPerPage
+  const indexOfFirstPokemon = indexOfLastPokemon - pokemonsPerPage
+  let currentPokemons = [allPokemons.slice(indexOfFirstPokemon, indexOfLastPokemon)]
+
   
-  let allPokemon = useSelector(state => state.allPokemons)
+  useEffect(() => {
+
+  }, [allPokemons])
   
-  
+
+  const paginado = (pageNumber) => {
+    setCurrentPage(pageNumber)
+  }
   return (
     <div>
-      <input type="text" placeholder='Busca tu pokemon!' />
+      <div className='navbar'>
+        <Navbar />
+      </div>
+      <div className='create'>
+        <Link to="/create"><h3>Crea tu propio pokemon!</h3></Link>
+      </div>
       <div>
+        <div>
+          <Paginado
+            pokemonsPerPage={pokemonsPerPage}
+            allPokemons={allPokemons.length}
+            paginado={paginado}
+          />
+
         <h3>Lista de Pokemon!!</h3>
-        <ul>
-        {
-          allPokemon.map(e => (
-            <li key={e.name}>
-              <img src={e.img} />
-              <li>{e.name}</li>
-              <li>{ e.type.map(t => t + " ") }</li>
-            </li>
-          ))
-        }
-        </ul>
+        <PokeList currentPokemons={currentPokemons} />
+        </div>
+        <div>
+
+        </div>
       </div>
     </div>
   )

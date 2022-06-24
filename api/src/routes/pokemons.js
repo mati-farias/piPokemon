@@ -80,10 +80,12 @@ router.post("/", async function(req,res){
     router.get("/:idPokemon", async function(req,res){
         const { idPokemon } = req.params
         try {
-            let db = await Pokemon.findAll({where: {id: idPokemon}})
-            console.log(db)    
-            if(db){
-                res.status(200).send(db)
+            if(idPokemon.length > 20){
+                let db = await Pokemon.findAll({where: {id: idPokemon}})
+                console.log(db)    
+                if(db){
+                    res.status(200).send(db)
+                }
             }
             else{
                 let idPoke = parseInt(idPokemon)

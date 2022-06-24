@@ -4,7 +4,7 @@ const { Pokemon, Type } = require("./db.js");
 
 
 const getPokemons = async function () {
-  const api = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=5");
+  const api = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=20");
   const db = await Pokemon.findAll({
     include: {
       model: Type,
@@ -18,7 +18,6 @@ const getPokemons = async function () {
   var pokeList = []
   for (let i = 0; i < api.data.results.length - 1; i++) {
     let respuesta = await axios.get(api.data.results[i].url)
-
     pokeList.push({
       id: respuesta.data.id,
       name: respuesta.data.name,
@@ -31,6 +30,7 @@ const getPokemons = async function () {
       type: respuesta.data.types.map(e => e.type.name),
       img: respuesta.data.sprites.versions["generation-v"]["black-white"].animated.front_default,
     })
+ 
   }
   let newDB = db.map(e => {
     return {
