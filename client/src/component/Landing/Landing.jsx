@@ -17,7 +17,7 @@ function Landing() {
   return (
     <div className="landing">
       <div >
-        <h1>Bienvenido a tu Pokedex!</h1>
+        <h1 className='bienvenido'>Bienvenido a tu Pokedex!</h1>
         <button className='glow-on-hover'>
         <Link to='/home' className='linkto'>
            <h2>Pokedex</h2>

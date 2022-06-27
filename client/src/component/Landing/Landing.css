@@ -8,8 +8,10 @@
     height: 100vh;
 }
 
-h1{
-    margin: 0%
+.bienvenido{
+    margin-top: 0%;
+    padding-top:60px;
+    padding-left: 700px;
 }
 
 #botonHome {
@@ -29,6 +31,7 @@ button{
     display: flex;
     color: aqua;
     justify-content: center;
+    
 }
 
 .glow-on-hover {
@@ -43,8 +46,9 @@ button{
     z-index: 0;
     border-radius: 10px;
     justify-content: center;
-    margin-left: 42%;
-    margin-top: 10%;
+    margin-left: 65%;
+    margin-top: 25%;
+    
 }
 
 .glow-on-hover:before {
@@ -62,6 +66,7 @@ button{
     opacity: 0;
     transition: opacity .3s ease-in-out;
     border-radius: 10px;
+    
 }
 
 .glow-on-hover:active {

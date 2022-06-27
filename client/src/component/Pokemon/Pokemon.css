@@ -1,0 +1,21 @@
+.card{
+    display: inline-block;
+    /* width: 140px;
+    height: 160px; */
+    padding: 5px;
+    border: 1px solid blue;  
+    border-radius: 20px;  
+    background-color: rgba(34, 127, 181, 0.387);
+}
+
+
+
+.pokemon{
+  
+    display: block
+    
+}
+
+.list{
+    display: inline;
+}

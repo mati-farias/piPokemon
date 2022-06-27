@@ -3,8 +3,9 @@ const db = require('./db.js');
 const { Pokemon, Type } = require("./db.js");
 
 
+
 const getPokemons = async function () {
-  const api = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=20");
+  const api = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=5");
   const db = await Pokemon.findAll({
     include: {
       model: Type,
@@ -45,6 +46,7 @@ const getPokemons = async function () {
       type: e.types.map(e => e.name)
     }
   })
+  console.log(newDB)
   
   pokeList = [...pokeList, ...newDB]
 

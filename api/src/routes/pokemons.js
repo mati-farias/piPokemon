@@ -4,6 +4,8 @@ const { getPokemons, getPokemonByName, getPokemonById } = require("../methods.js
 
 const router = Router();
 
+
+
 router.get("/", async (req, res) => {
     try {
         const {name} = req.query

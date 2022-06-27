@@ -1,3 +1,24 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(#00ffa299, green, blue);
+}
+
 ul {
     list-style-type: none;
+}
+
+.pokemonList{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;    
+    justify-content: center;
 }
