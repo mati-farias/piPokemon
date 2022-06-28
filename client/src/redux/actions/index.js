@@ -49,3 +49,10 @@ export const sortBy = (payload) => {
     return dispatch({type: SORT_BY, payload: payload})
    }
 }
+
+export const createPokemon = (payload) => {
+    return function (dispatch){
+        let response = axios.post('http://localhost:3001/pokemons/', payload)
+        return dispatch({type: CREATE_POKEMON, payload: response.data})
+    }
+}

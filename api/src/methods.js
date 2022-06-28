@@ -28,7 +28,7 @@ const getPokemons = async function () {
       speed: respuesta.data.stats[5].base_stat,
       height: respuesta.data.height,
       weight: respuesta.data.weight,
-      type: respuesta.data.types.map(e => e.type.name),
+      types: respuesta.data.types.map(e => e.type.name),
       img: respuesta.data.sprites.versions["generation-v"]["black-white"].animated.front_default,
     })
  
@@ -43,10 +43,9 @@ const getPokemons = async function () {
       speed: e.speed,
       height: e.height,
       weight: e.weight,
-      type: e.types.map(e => e.name)
+      types: e.types.map(e => e.name)
     }
   })
-  console.log(newDB)
   
   pokeList = [...pokeList, ...newDB]
 
@@ -57,6 +56,7 @@ const getPokemons = async function () {
 const getPokemonById = async function (id) {
   let poke = {}
   let respuesta = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)
+  console.log("methods", respuesta.data.types[0].type.name)
   poke = {
     id: respuesta.data.id,
     name: respuesta.data.name,
@@ -66,7 +66,7 @@ const getPokemonById = async function (id) {
     speed: respuesta.data.stats[5].base_stat,
     height: respuesta.data.height,
     weight: respuesta.data.weight,
-    type: respuesta.data.types.map(e => e.type.name),
+    types: respuesta.data.types.map(e => e.type.name),
     img: respuesta.data.sprites.versions["generation-v"]["black-white"].animated.front_default,
   }
   return poke
@@ -74,20 +74,41 @@ const getPokemonById = async function (id) {
 
 const getPokemonByName = async function (name) {
   let poke = {}
-  let respuesta = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
+  let finalName;
 
-  poke = {
-    id: respuesta.data.id,
-    name: respuesta.data.name,
-    hp: respuesta.data.stats[0].base_stat,
-    attack: respuesta.data.stats[1].base_stat,
-    defense: respuesta.data.stats[2].base_stat,
-    speed: respuesta.data.stats[5].base_stat,
-    height: respuesta.data.height,
-    weight: respuesta.data.weight,
-    type: respuesta.data.types.map(e => e.type.name),
-    img: respuesta.data.sprites.versions["generation-v"]["black-white"].animated.front_default,
-  }
+  let db = await Pokemon.findAll({where: {name: name},  
+    include: {
+        model: Type,
+        attributes: ['name'],
+        through: {
+          attributes: []
+        }
+     }})
+     console.log(db[0])
+     if(db[0]){
+      return db
+    }
+    else {
+      let respuesta = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
+      let nameAPI = respuesta.data
+      
+      if (nameAPI){
+        finalName = nameAPI
+      }
+    }
+
+  poke = [{
+    id: finalName.id,
+    name: finalName.name,
+    hp: finalName.stats[0].base_stat,
+    attack: finalName.stats[1].base_stat,
+    defense: finalName.stats[2].base_stat,
+    speed: finalName.stats[5].base_stat,
+    height: finalName.height,
+    weight: finalName.weight,
+    types: finalName.types.map(e => e.type? e.type.name : e.name),
+    img: finalName.sprites.versions["generation-v"]["black-white"].animated.front_default,
+  }]
   return poke
 }
 

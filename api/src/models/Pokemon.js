@@ -32,9 +32,8 @@ module.exports = (sequelize) => {
     weight: {
       type: DataTypes.INTEGER
     },
-    dbPoke: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: true
+    img: {
+      type: DataTypes.STRING
     }
   },
     { timestamps: false }

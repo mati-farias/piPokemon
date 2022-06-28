@@ -1,4 +1,4 @@
-import { GET_ALL_POKEMON, GET_POKEMON_DETAIL, CREATE_POKEMON, GET_ALL_TYPES, FILTER_BY_TYPES, GET_POKEMON_BY_NAME, SORT_BY,FILTER_BY_ORIGIN } from '../actions/actionTypes';
+import { GET_ALL_POKEMON, GET_POKEMON_DETAIL, CREATE_POKEMON, GET_ALL_TYPES, FILTER_BY_TYPES, GET_POKEMON_BY_NAME, SORT_BY, FILTER_BY_ORIGIN } from '../actions/actionTypes';
 
 const initialState = {
     pokemons: [],
@@ -32,9 +32,14 @@ const rootReducer = (state = initialState, action) => {
         case GET_POKEMON_BY_NAME: {
             return {
                 ...state,
-                pokeByName: action.payload
+                allPokemons: action.payload
             }
         }
+        case CREATE_POKEMON:
+            return {
+                ...state,
+                allPokemon: [...state.allPokemons,action.payload]
+            }
         case SORT_BY: {
             var parameters;
             console.log(action.payload)
@@ -77,7 +82,7 @@ const rootReducer = (state = initialState, action) => {
                         if (a.attack > b.attack) {
                             return -1
                         }
-                        if (a.attack < b.attack ) {
+                        if (a.attack < b.attack) {
                             return 1
                         }
                         return 0
@@ -86,7 +91,7 @@ const rootReducer = (state = initialState, action) => {
                 default:
                     break;
             }
-            
+
             return {
                 ...state,
                 allPokemons: state.allPokemons.sort(parameters)
@@ -99,7 +104,7 @@ const rootReducer = (state = initialState, action) => {
             function forInTypes() {
                 let newArray = [];
                 for (let i in pokemons) {
-                    pokemons[i].type.map((e) => {
+                    pokemons[i].types.map((e) => {
                         if (e === action.payload) {
                             newArray.push(pokemons[i])
                         }
@@ -116,8 +121,7 @@ const rootReducer = (state = initialState, action) => {
         }
         case FILTER_BY_ORIGIN: {
             const pokemonsDB = state.pokemons
-            console.log("hola",pokemonsDB)
-            switch(action.payload){
+            switch (action.payload) {
                 case 'all':
                     return {
                         ...state,
@@ -127,9 +131,9 @@ const rootReducer = (state = initialState, action) => {
                     let newArray = [];
                     for (let i in pokemonsDB) {
                         console.log(pokemonsDB[i])
-                        if(typeof pokemonsDB[i].id !== 'string'){
+                        if (typeof pokemonsDB[i].id !== 'string') {
                             newArray.push(pokemonsDB[i])
-                        } 
+                        }
                     }
                     return {
                         ...state,
@@ -140,36 +144,20 @@ const rootReducer = (state = initialState, action) => {
                     let newArray = [];
                     for (let i in pokemonsDB) {
                         console.log(pokemonsDB[i])
-                        if(typeof pokemonsDB[i].id === 'string') newArray.push(pokemonsDB[i])                      
+                        if (typeof pokemonsDB[i].id === 'string') newArray.push(pokemonsDB[i])
                     }
                     return {
                         ...state,
                         allPokemons: newArray
                     }
-                    default:
-                        break;
-                }
+                default:
+                    break;
             }
-            default:
-                return { ...state }
         }
-            //////////////////////////////////////////////////////////////////////////////////
-        //     const pokemonsFiltered = action.payload === 'all' ? pokemonsDB : forInOrigin();
+        default:
+            return { ...state }
+    }
 
-        //     function forInOrigin() {
-        //         let newArray = [];
-        //         for (let i in pokemonsDB) {
-        //             console.log(pokemonsDB[i])
-        //             if(typeof pokemonsDB[i].id === 'string') newArray.push(pokemonsDB[i])                      
-        //         }
-        //         return newArray
-        //     }
-        //     return {
-        //         ...state,
-        //         allPokemons: pokemonsFiltered
-        //     }
-        // }
-    
 }
 export default rootReducer;
 

@@ -6,7 +6,6 @@ import { Route } from "react-router-dom";
 import PokeDetalle from './component/PokeDetalle/PokeDetalle';
 import CreatePokemon from './component/CreatePokemon/CreatePokemon';
 import Navbar from './component/Navbar/Navbar';
-import PokeDetalleByName from './component/PokeDetalle/PokeDetalleByName';
 
 function App() {
   return (
@@ -15,8 +14,7 @@ function App() {
           <Route exact path="/" component={Landing}/>
           <Route exact path="/create" component={CreatePokemon}/>
           <Route exact path="/home" component={Home}/>
-          <Route exact path="/home/:id" component={PokeDetalle}/>   
-          <Route exact path="/home/search/:name" component={PokeDetalleByName}/>   
+          <Route exact path="/home/:id" component={PokeDetalle}/>      
         </React.Fragment>
     </div>
   );

@@ -10,6 +10,7 @@ router.get("/", async (req, res) => {
     try {
         const {name} = req.query
         if (name){
+            console.log("QUERY", name)
             let poke = await getPokemonByName(name)
             res.send(poke)
         }
@@ -30,7 +31,7 @@ router.post("/", async function(req,res){
     // voy a tener una [con todos los tipos].
     // pokemon.addType(type)
 
-    let { name, hp, attack, defense, speed, height, weight, types } =
+    let { name, hp, attack, defense, speed, height, weight, types,img } =
     req.body;
     if (
         isNaN(hp) ||
@@ -56,13 +57,13 @@ router.post("/", async function(req,res){
                 speed: Number(speed),
                 height: Number(height),
                 weight: Number(weight),
+                img: img
             });
             
             let typeDB = await Type.findAll({where: {name: types.map(e => e)}})
             // let typesArray = typeDB.map(e => e.name)
             
             await pokemon.addTypes(typeDB)
-            console.log(pokemon)
             res.json({ info: "Pokemon creado" });
         } catch (error) {
             res.send(error)
@@ -82,11 +83,31 @@ router.post("/", async function(req,res){
     router.get("/:idPokemon", async function(req,res){
         const { idPokemon } = req.params
         try {
-            if(idPokemon.length > 20){
-                let db = await Pokemon.findAll({where: {id: idPokemon}})
-                console.log(db)    
+            if(idPokemon.length > 15){
+                let db = await Pokemon.findByPk(idPokemon, {
+                    include: {
+                        model: Type,
+                        attributes: ['name'],
+                        through: {
+                          attributes: []
+                        }
+                      }
+                })
+                
                 if(db){
-                    res.status(200).send(db)
+                    let pokeDB = {
+                        name: db.name,
+                        hp: db.hp,
+                        attack: db.attack,
+                        defense: db.defense,
+                        speed: db.speed,
+                        height:db.height,
+                        weight: db.weight,
+                        img: db.img,
+                        types: db.types.map(e => e.name)
+                        
+                    }
+                    res.status(200).send(pokeDB)
                 }
             }
             else{

@@ -2,6 +2,7 @@ import React,{useEffect} from 'react'
 import Pokemon from '../Pokemon/Pokemon'
 import { useSelector } from 'react-redux';
 import './PokeList.css'
+import imgDefault from '../../images/poke_default.png'
 
 
 const PokeList = (currentPokemons) => {
@@ -19,10 +20,10 @@ const PokeList = (currentPokemons) => {
                     <div key={p.id}>
                         <Pokemon
                             id={p.id}
-                            img={p.img}
+                            img= {p.img ? p.img : imgDefault}
                             name={p.name}
-                            types={p.type}
-                        />                        
+                            types={p.types}
+                        />                      
                     </div>
                 )
             }
