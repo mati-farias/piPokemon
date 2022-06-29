@@ -1,15 +1,20 @@
 .card{
-    display: inline-block;
-    /* width: 140px;
-    height: 160px; */
+    display: grid;
     padding: 5px;
     border: 1px solid blue;  
     border-radius: 20px;  
     background-color: rgba(34, 127, 181, 0.387);
+    /* margin: auto; */
+    width: 30vw;
+    margin-bottom: 1rem;
+    gap: 1rem;
 }
 
 
-
+.pokeImg{
+    max-width: 15rem;
+    min-height: 10rem;
+}
 .pokemon{
   
     display: block
@@ -18,4 +23,18 @@
 
 .list{
     display: inline;
+}
+
+.link{
+    text-decoration: none;
+    font-family: 'Lobster';
+    color: rgba(249, 249, 249, 0.835);
+    font-size:xxx-large;
+    
+}
+
+.types{
+    font-family: 'Lobster';
+    color: rgba(15, 248, 186, 0.835);
+    font-size:xx-large;
 }

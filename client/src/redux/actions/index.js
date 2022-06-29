@@ -31,9 +31,11 @@ export const filterByTypes = (payload) =>{
 }
 
 export const filterByOrigin = (payload) => {
-    return {
-        type: FILTER_BY_ORIGIN,
-        payload
+    return async function (dispatch){
+        dispatch({
+            type: FILTER_BY_ORIGIN,
+            payload
+        })
     }
 }
 

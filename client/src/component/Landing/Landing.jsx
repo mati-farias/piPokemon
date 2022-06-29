@@ -9,10 +9,10 @@ import './Landing.css'
 function Landing() {
 
   const dispatch = useDispatch()
-  useEffect(() => {
-    dispatch(getAllPokemon())
-    dispatch(getAllTypes())
-  },[dispatch])
+  // useEffect(() => {
+  //   dispatch(getAllPokemon())
+  //   dispatch(getAllTypes())
+  // },[dispatch])
   
   return (
     <div className="landing">

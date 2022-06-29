@@ -3,15 +3,21 @@ import PokeList from '../PokeList/PokeList';
 import './Home.css'
 import Navbar from '../Navbar/Navbar';
 import { Link } from 'react-router-dom'
-import { useState  } from 'react'
+import { useState, useEffect  } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Paginado from '../Paginado/Paginado';
-import { filterByTypes, sortBy, filterByOrigin } from '../../redux/actions/index.js'
+import { filterByTypes, sortBy, filterByOrigin,getAllTypes,getAllPokemon } from '../../redux/actions/index.js'
 
 
 
 const Home = () => {
   //traigo el estado actual de pokemons
+  const dispatch = useDispatch()
+  
+  useEffect(() => {
+    dispatch(getAllPokemon())
+    dispatch(getAllTypes())
+  },[dispatch])
   const {allPokemons} = useSelector(state => state)
   // PAGINADO 
   const [currentPage, setCurrentPage] = useState(1)
@@ -29,7 +35,6 @@ const Home = () => {
 
   // filter
 
-  const dispatch = useDispatch()
 
   let types = useSelector(state => state.types)
   console.log(types)
@@ -49,44 +54,58 @@ const Home = () => {
 
 
   return (
-    <div>
+      <div className='home'>    
         <div className='navbar'>
             <Navbar />
         </div>
-        <div className='create'>
-            <Link to="/create"><h3>Crea tu propio pokemon!</h3></Link>
-        </div>
-        <div>
-            <div>
-                {/* onChange={(e) => handleSortPokemons(e)} */}
-                <h3>Ordenemos la lista!</h3>
-                <select id="OrdenBy" onChange={handleSort}>
-                    <option value="NONE" >None</option>
-                    <option value="AZ">By name from A to Z</option>
-                    <option value="ZA">By name from Z to A</option>
-                    <option value="asc">By attack from min to max</option>
-                    <option value="desc">By attack from max to min</option>
-                </select>
-            </div>
-            <div>
-          {/* onChange={(e) => handleFilterType(e) }*/}
-          <h3>Filtremos la lista!</h3>
-          <select onChange={e => { handleFilterTypes(e) }}>
-            <option value="All">All</option>
-            {types?.map((el) => {
-              return <option key={el.id} value={el.name}>{el.name}</option>;
-            })}
-          </select>
-          <select onChange={e => { handleFilterOrigin(e)}}>
-            <option value="all">All</option>
-            <option value="created">Created</option>
-            <option value="pokeApi">PokeApi</option>
-          </select>
-      </div>
-        </div>
+        
+          <div className='upperContainer'>
+          
+                  <div>
+                      {/* onChange={(e) => handleSortPokemons(e)} */}
+                      <h3 className='text'>Ordenemos la lista!</h3>
+                      <select id="OrdenBy" onChange={handleSort}>
+                          <option value="NONE" >None</option>
+                          <option value="AZ">By name from A to Z</option>
+                          <option value="ZA">By name from Z to A</option>
+                          <option value="asc">By attack from min to max</option>
+                          <option value="desc">By attack from max to min</option>
+                      </select>
+                  </div>
+              
+                  <div className='create'>
+                      <Link to="/create"><h3 className='text'>Crea tu propio pokemon!</h3></Link>
+                  </div>
+
+                <div className='filters'>
+                  <div className='filterType'>
+                    <h3 className='text'>Filtremos la lista por tipo:</h3>
+                    <select onChange={e => { handleFilterTypes(e) }}>
+                      <option value="All">All</option>
+                      {types?.map((el) => {
+                        return <option key={el.id} value={el.name}>{el.name}</option>;
+                      })}
+                    </select>
+                  </div>
+
+                <div className='filterOrigin'>
+                    <h3 className='text'>Filtremos la lista por origen:</h3>
+                  <select onChange={e => { handleFilterOrigin(e)}}>
+                    <option value="all">All</option>
+                    <option value="created">Created</option>
+                    <option value="pokeApi">PokeApi</option>
+                  </select>
+                </div>
+
+                </div>
+
+          </div>
+
+        
+      
         <div>
               <h3>Lista de Pokemon!!</h3>
-            <div>
+            <div className='paginado'>
                 <Paginado
                   pokemonsPerPage={pokemonsPerPage}
                   allPokemons={allPokemons.length}

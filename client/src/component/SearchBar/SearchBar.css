@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+.searchBar{
+    display: flex;    
+    align-items: center;
+    padding-right: 40px;
+    padding-top: 17px;    
+}
+
+.textSearchBar{
+    margin-right: 30px;
+    font-family: 'Lobster';
+    color: rgba(0, 187, 255, 0.835);
+    margin-right: 1rem;
+    font-size: x-large;
+}
+
+.searchbtn{
+    background-color: rgba(0, 187, 255, 0.835);
+    size: 2rem;
+}
+

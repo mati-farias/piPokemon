@@ -1,6 +1,7 @@
 import React, {useState } from 'react'
 import { useDispatch} from 'react-redux'
 import { getPokemonByName } from '../../redux/actions'
+import './SearchBar.css'
 
 
 const SearchBar = () => {
@@ -26,9 +27,11 @@ const SearchBar = () => {
 
   return (
     <div className="searchBar">
-          <h5>Busqueda por nombre!</h5>
+      <div className='textSearchBar'>
+          <h3>Busqueda:</h3>
+      </div>
           <input type="text" placeholder='Busca tu pokemon!' name="name" value={name} onChange={(e) => handleOnChange(e)}/>
-                <button onClick={(e) => handleClick(e)}>
+                <button className="searchbtn" onClick={(e) => handleClick(e)}>
                       Search
                 </button>
         </div>

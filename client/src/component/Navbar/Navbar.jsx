@@ -1,6 +1,6 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import img from '../../images/pokebola.PNG'
+import { NavLink } from 'react-router-dom'
+import img from '../../images/pokeballpng.png'
 import SearchBar from '../SearchBar/SearchBar'
 
 import './Navbar.css'
@@ -10,20 +10,18 @@ const Navbar = () => {
   return (
     <nav className='navbar'>
       <div className='navContainer'>
-        <div>
-          <SearchBar />
-        </div>
-        <div>
-          <Link to="/home">
+        <div className='divLogo'>
+          <NavLink to="/home">
             <img className="logo" src={img} alt="logo" />
-          </Link>
+          </NavLink>
         </div>
         <div className='textPokedex'>
-          <h2>HenryPokedex</h2>
+          <h1>HenryPokedex</h1>
         </div>
-        
-
-      </div>    
+        <div className='searchBar'>
+          <SearchBar />
+        </div>
+      </div>
     </nav>
   )
 }

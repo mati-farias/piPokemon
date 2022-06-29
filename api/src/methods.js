@@ -5,7 +5,7 @@ const { Pokemon, Type } = require("./db.js");
 
 
 const getPokemons = async function () {
-  const api = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=5");
+  const api = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=20");
   const db = await Pokemon.findAll({
     include: {
       model: Type,
@@ -29,7 +29,9 @@ const getPokemons = async function () {
       height: respuesta.data.height,
       weight: respuesta.data.weight,
       types: respuesta.data.types.map(e => e.type.name),
-      img: respuesta.data.sprites.versions["generation-v"]["black-white"].animated.front_default,
+      // img: respuesta.data.sprites.versions["generation-v"]["black-white"].animated.front_default,
+      img: respuesta.data.sprites.other["official-artwork"].front_default
+      
     })
  
   }
@@ -67,7 +69,8 @@ const getPokemonById = async function (id) {
     height: respuesta.data.height,
     weight: respuesta.data.weight,
     types: respuesta.data.types.map(e => e.type.name),
-    img: respuesta.data.sprites.versions["generation-v"]["black-white"].animated.front_default,
+    img: respuesta.data.sprites.other["official-artwork"].front_default,
+    // img: respuesta.data.sprites.versions["generation-v"]["black-white"].animated.front_default,
   }
   return poke
 }
@@ -107,7 +110,8 @@ const getPokemonByName = async function (name) {
     height: finalName.height,
     weight: finalName.weight,
     types: finalName.types.map(e => e.type? e.type.name : e.name),
-    img: finalName.sprites.versions["generation-v"]["black-white"].animated.front_default,
+    img: finalName.sprites.other["official-artwork"].front_default,
+    // img: finalName.sprites.versions["generation-v"]["black-white"].animated.front_default,
   }]
   return poke
 }

@@ -143,7 +143,6 @@ const rootReducer = (state = initialState, action) => {
                 case 'created':
                     let newArray = [];
                     for (let i in pokemonsDB) {
-                        console.log(pokemonsDB[i])
                         if (typeof pokemonsDB[i].id === 'string') newArray.push(pokemonsDB[i])
                     }
                     return {

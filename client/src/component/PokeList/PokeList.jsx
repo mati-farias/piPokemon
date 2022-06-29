@@ -2,7 +2,7 @@ import React,{useEffect} from 'react'
 import Pokemon from '../Pokemon/Pokemon'
 import { useSelector } from 'react-redux';
 import './PokeList.css'
-import imgDefault from '../../images/poke_default.png'
+import imgDefault from '../../images/pokeball-png-45342.png'
 
 
 const PokeList = (currentPokemons) => {

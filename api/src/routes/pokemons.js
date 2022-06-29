@@ -5,7 +5,7 @@ const { getPokemons, getPokemonByName, getPokemonById } = require("../methods.js
 const router = Router();
 
 
-
+// let pok = getPokemons()
 router.get("/", async (req, res) => {
     try {
         const {name} = req.query
@@ -27,9 +27,6 @@ router.get("/", async (req, res) => {
 
 
 router.post("/", async function(req,res){
-    // tengo que traer todos los tipos y guardarlos en un array con findAll(where: name === type).
-    // voy a tener una [con todos los tipos].
-    // pokemon.addType(type)
 
     let { name, hp, attack, defense, speed, height, weight, types,img } =
     req.body;

@@ -10,10 +10,10 @@ const Pokemon = (props) => {
             <li >
                 <div className='card'>
                     <div>
-                        <img src={img} alt="imagen pokemon"/>
+                        <img className="pokeImg" src={img} alt="imagen pokemon"/>
                     </div>
                     <div>
-                        <Link to={`home/${id}`}><h3 className='name'>{name}</h3></Link>
+                        <Link to={`home/${id}`} className="link"><h3 className='name'>{name}</h3></Link>
                         <h4 className='types'>
                         {
                             types.map(t => t + " ") 
