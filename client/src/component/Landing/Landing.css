@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 
 .landing{
     background-image: url('../../images/wallpaper.jpg');
@@ -8,13 +8,18 @@
     height: 100vh;
 }
 
-.bienvenido{
-    margin-top: 0%;
-    padding-top:60px;
-    padding-left: 700px;
+.title{
+  display: flex;
+  font-family: 'Lobster';
+  color: rgb(174, 219, 234)
+}
+.subtitle{
+    display: flex;
+    font-family: 'Lobster';
+    color: rgb(174, 219, 234)
 }
 
-#botonHome {
+/* #botonHome {
     display: flex;
     color: aqua;
     justify-content: center;
@@ -22,32 +27,41 @@
     border: 1px solid red;
     background-color: blueviolet;
     border: 2px solid blueviolet;
-    border-radius: 5%;
-    margin-left: 42%;
-    margin-top: 39%
-}
+    border-radius: 5%;   
+} */
 
-button{
+/* button{
     display: flex;
     color: aqua;
     justify-content: center;
+    padding-left: 20px;
     
+} */
+
+.landingWrapper{
+    float: right;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    align-items: center;
 }
 
 .glow-on-hover {
-    width: 220px;
-    height: 50px;
+    
     border: none;
     outline: none;
     color: #fff;
-    background: rgba(50, 50, 50, 1);
+    background: rgb(1, 37, 49);
     cursor: pointer;
     position: relative;
     z-index: 0;
     border-radius: 10px;
     justify-content: center;
-    margin-left: 65%;
-    margin-top: 25%;
+    float: right;
+    margin: 20px;
+    padding: 0px 50px
     
 }
 
@@ -65,7 +79,8 @@ button{
     animation: glowing 20s linear infinite;
     opacity: 0;
     transition: opacity .3s ease-in-out;
-    border-radius: 10px;
+    border-radius: 15px;
+    
     
 }
 
@@ -87,16 +102,26 @@ button{
     position: absolute;
     width: 100%;
     height: 100%;
-    background: rgba(1, 9, 33, 0);
+    background: rgba(246, 246, 248, 0);
     left: 0;
     top: 0;
-    border-radius: 10px;
+    border-radius: 15px;
 }
 
-.linkto{
+/* .linkto{
     text-decoration: none;
-    color: white;
+    color: rgb(250, 250, 250);;
+    font-family: 'Lobster';
+    font-size: medium;
     
+} */
+
+.buttonText{
+    text-decoration: none;
+    color: rgb(250, 250, 250);;
+    font-family: 'Lobster';
+    font-size: x-large;
+    letter-spacing: 1px;
 }
 
 @keyframes glowing {

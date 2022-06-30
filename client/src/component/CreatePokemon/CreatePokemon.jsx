@@ -3,21 +3,20 @@ import { createPokemon } from '../../redux/actions/index.js'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link,useHistory } from 'react-router-dom'
 
-const validate = ({name, hp, attack, defense, speed, height, weight, image}) => {
+const validate = ({name, hp, attack, defense, speed, height, weight, image,types}) => {
   const errors = {};
-  // const regEx = /^\d+$/;
   const regExURL = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png|svg|webp)/g;
 
   if(!name) errors.name = 'Name is required';
+  if(types.length === 0 || types.length > 2) errors.types = "Types is required and it can't be longer than 2"
   if(!hp) errors.hp = 'HP is required and must be a NUMBER smaller than 3000';
   if(!attack  ||  attack === 'e'    || attack > 1000) errors.attack = 'Attack is required and must be a NUMBER smaller than 1000';
   if(!defense || defense === 'e'    || defense > 1000 ) errors.defense = 'Defense is required and must be a NUMBER  smaller than 1000';
   if(!speed   ||   speed === 'e'    || speed > 500 ) errors.speed = 'Speed is required and must be a NUMBER  smaller than 500';
   if(!height  ||  height === 'e'    || height > 300) errors.height = 'Height is required and must be a NUMBER  smaller than 300';
   if(!weight  ||  weight === 'e'    || weight > 300) errors.weight = 'Weight is required and must be a NUMBER  smaller than 300';
-  if(image.length > 0 && image.search(regExURL) === -1) errors.image = "Image must be a valid url or left empy";
+  if(image.length > 0 && image.search(regExURL) === -1) errors.image = "Image must be a valid url or left empty";
   
-
   return errors
 
 }
@@ -61,9 +60,7 @@ const CreatePokemon = () => {
   }
 
   const handleCheckbox = (e) => {
-    if(e.target.checked && !input.types.includes(e.target.value)){
-      console.log(input.types)
-      console.log(e.target.value)
+    if(e.target.checked && !input.types.includes(e.target.value) && input.types.length < 2){
       setInput({
         ...input,
         types: [...input.types, e.target.value]
@@ -82,7 +79,7 @@ const CreatePokemon = () => {
     e.preventDefault()
     let errors = Object.keys(validate(input))
     if(errors.length !== 0){
-      alert('You have a couple of errors.You need to fix it to create the pokemon!')
+      alert('You have a couple of errors.You need to fix them before creating the pokemon!')
     }
     else {     
       dispatch(createPokemon(input))
@@ -102,6 +99,7 @@ const CreatePokemon = () => {
       history.push('/home')
     }
   }
+  console.log(types)
   return (
     <div>
       <div className='homebutton'>
@@ -116,22 +114,22 @@ const CreatePokemon = () => {
           {errors.name && <div><p>{errors.name}</p></div>}
         </div>
         <div>
-          <h4>Choose your pokemon's types!</h4>
-          <h6>(it can be more than one!)</h6>
-          {
-            types.map((e) => {
-              return (
-                <div key={e.id}>
-                  <input type="checkbox" id={e.id} onChange={handleCheckbox} value={e.name} />
-                  <label>{e.name}</label>
-                </div>
-              )
+            <h4>Choose your pokemon's types!</h4>
+            {
+              types.map((e) => {
+                return (
+                  <div key={e.id}>
+                    <input type="checkbox" id={e.id} onChange={handleCheckbox} value={e.name} />
+                    <label>{e.name}</label>
+                  </div>
+                )
 
-            })
-          }
-          <div>
-            {input.types.map(e => e +", ")}
-          </div>
+              })
+            }
+            <div>
+              {input.types.map(e => e +", ")}
+            </div>
+            {errors.types && <div><p>{errors.types}</p></div>}
         </div>
         <div>
           <input type="number" placeholder='HP!' className='form-control' onChange={e =>handleInputChange(e)} name="hp" value={input.hp}/>
@@ -174,13 +172,3 @@ const CreatePokemon = () => {
 }
 
 export default CreatePokemon
-
-
-// if(!name) errors.name = 'Name is required';
-    // if(!hp || hp.search(regEx) === -1) errors.hp = 'HP is required and must be a number';
-    // if(!attack || attack.search(regEx) === -1) errors.attack = 'Attack is required and must be a number';
-    // if(!defense || defense.search(regEx) === -1) errors.defense = 'Defense is required and must be a number';
-    // if(!speed || speed.search(regEx) === -1) errors.speed = 'Speed is required and must be a number';
-    // if(!height || height.search(regEx) === -1) errors.height = 'Height is required and must be a number';
-    // if(!weight || weight.search(regEx) === -1) errors.weight = 'Weight is required and must be a number';
-    // if(image.length > 0 && image.search(regExURL) === -1) errors.image = "Image must be a valid url or left empy";

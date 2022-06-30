@@ -16,13 +16,14 @@ function Landing() {
   
   return (
     <div className="landing">
-      <div >
-        <h1 className='bienvenido'>Bienvenido a tu Pokedex!</h1>
-        <button className='glow-on-hover'>
+      <div className='landingWrapper'>
+        <h1 className='title'>Welcome to your</h1>
+        <h1 className='subtitle'>Pokedex!</h1>
         <Link to='/home' className='linkto'>
-           <h2>Pokedex</h2>
-        </Link>
+        <button className='glow-on-hover'>
+           <h2 className="buttonText">Start!</h2>
         </button>
+        </Link>
       </div>
     </div>
   )

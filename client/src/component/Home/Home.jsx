@@ -61,9 +61,9 @@ const Home = () => {
         
           <div className='upperContainer'>
           
-                  <div>
+                  <div className="sort">
                       {/* onChange={(e) => handleSortPokemons(e)} */}
-                      <h3 className='text'>Ordenemos la lista!</h3>
+                      <h3 className='text'>Sort the list!</h3>
                       <select id="OrdenBy" onChange={handleSort}>
                           <option value="NONE" >None</option>
                           <option value="AZ">By name from A to Z</option>
@@ -74,12 +74,13 @@ const Home = () => {
                   </div>
               
                   <div className='create'>
-                      <Link to="/create"><h3 className='text'>Crea tu propio pokemon!</h3></Link>
+                      <Link to="/create" className='linkTitle'><h3 className='text'>Create your own pokemon!</h3></Link>
+                      <Link to="/create" className='linkSubtitle'><h3 className='text'>Click me!</h3></Link>
                   </div>
 
                 <div className='filters'>
                   <div className='filterType'>
-                    <h3 className='text'>Filtremos la lista por tipo:</h3>
+                    <h3 className='text'>Filter by type:</h3>
                     <select onChange={e => { handleFilterTypes(e) }}>
                       <option value="All">All</option>
                       {types?.map((el) => {
@@ -89,7 +90,7 @@ const Home = () => {
                   </div>
 
                 <div className='filterOrigin'>
-                    <h3 className='text'>Filtremos la lista por origen:</h3>
+                    <h3 className='text'>Filter by origin:</h3>
                   <select onChange={e => { handleFilterOrigin(e)}}>
                     <option value="all">All</option>
                     <option value="created">Created</option>
@@ -104,7 +105,7 @@ const Home = () => {
         
       
         <div>
-              <h3>Lista de Pokemon!!</h3>
+              <h3 className="list-title">Lista de Pokemon</h3>
             <div className='paginado'>
                 <Paginado
                   pokemonsPerPage={pokemonsPerPage}
