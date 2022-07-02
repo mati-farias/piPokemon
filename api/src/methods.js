@@ -20,7 +20,7 @@ const getPokemons = async function () {
   })
 
   let infoUrl = api.data.results.map(e => axios.get(e.url))
-  console.log(infoUrl)
+ 
 
   let pokeInfo = await Promise.all(infoUrl)
     .then(values => {
@@ -37,7 +37,6 @@ const getPokemons = async function () {
           height: e.height,
           weight: e.weight,
           types: e.types.map(e => e.type.name),
-          // img: respuesta.data.sprites.versions["generation-v"]["black-white"].animated.front_default,
           img: e.sprites.other["official-artwork"].front_default
         })
       })
@@ -67,7 +66,6 @@ const getPokemons = async function () {
 const getPokemonById = async function (id) {
   let poke = {}
   let respuesta = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)
-  console.log("methods", respuesta.data.types[0].type.name)
   poke = {
     id: respuesta.data.id,
     name: respuesta.data.name,
@@ -98,7 +96,6 @@ const getPokemonByName = async function (name) {
       }
     }
   })
-  console.log(db[0])
   if (db[0]) {
     return db
   }

@@ -10,16 +10,21 @@ router.get("/", async (req, res) => {
     try {
         const {name} = req.query
         if (name){
-            console.log("QUERY", name)
             let poke = await getPokemonByName(name)
-            res.send(poke)
+            if (poke){
+                res.send(poke)
+            }
+            else {
+                res.status.send("No se encontró el pokemon")
+            }
         }
+        
 
         let poke = await getPokemons()
         res.send(poke)
         
     } catch (error) {
-        res.status(404).send("No se encontraron pokemon")
+        res.status(404).send(error)
     }
 })
 
@@ -109,7 +114,6 @@ router.post("/", async function(req,res){
             }
             else{
                 let idPoke = parseInt(idPokemon)
-                console.log(idPoke)
                 let poke = await getPokemonById(idPoke)
                 res.status(200).send(poke)
             }

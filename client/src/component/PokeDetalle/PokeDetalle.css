@@ -6,7 +6,6 @@
     border: 1px solid blue;  
     border-radius: 20px;  
     background-color: rgba(34, 127, 181, 0.387);
-    width: 30vw;
     margin-bottom: 1rem;
     gap: 1rem;
 }
@@ -14,18 +13,27 @@
 .detailBody{
     display: flex;
     justify-content: center;
-    background-image: url('../../images/wallPaperPokebola.jpg');
-    background-size: cover;
+    background-color: rgb(18, 41, 78);
+    /* background-image: url('../../images/wallpaper.jpg'); */
+    /* background-size: cover; */
     flex-direction: column;
-    background-size: cover;
     align-items: center;
+    background-size: cover;
+    min-height: 100%;
+    min-width: 100%;
+    width: 100%; 
+    height: auto;
+    position: absolute;
 }
 
 .textDetail{
     font-family: 'Lobster';
-    color: rgba(0, 187, 255, 0.835);
+    color: rgba(252, 252, 252, 0.835);
     font-size: xx-large;
     letter-spacing: 1px;
+    margin: 0;
+    padding: 0;
+    
 }
 
 .homebutton{
@@ -36,10 +44,10 @@
     letter-spacing: 1px;
 }
 
-/* .detailImg{
-    max-width: 20rem;
-    min-height: 10rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-} */
+
+.detailImg{
+    max-width: 500px;
+    height: auto;
+    width: auto;
+
+}

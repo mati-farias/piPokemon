@@ -5,7 +5,6 @@ import Landing from './component/Landing/Landing'
 import { Route } from "react-router-dom";
 import PokeDetalle from './component/PokeDetalle/PokeDetalle';
 import CreatePokemon from './component/CreatePokemon/CreatePokemon';
-import Navbar from './component/Navbar/Navbar';
 
 function App() {
   return (

@@ -42,7 +42,7 @@ const rootReducer = (state = initialState, action) => {
             }
         case SORT_BY: {
             var parameters;
-            console.log(action.payload)
+          
             switch (action.payload) {
                 case 'AZ':
                     parameters = function (a, b) {
@@ -128,26 +128,26 @@ const rootReducer = (state = initialState, action) => {
                         allPokemons: pokemonsDB
                     }
                 case 'pokeApi': {
-                    let newArray = [];
+                    const pokeApi = [];
                     for (let i in pokemonsDB) {
-                        console.log(pokemonsDB[i])
+                       
                         if (typeof pokemonsDB[i].id !== 'string') {
-                            newArray.push(pokemonsDB[i])
+                            pokeApi.push(pokemonsDB[i])
                         }
                     }
                     return {
                         ...state,
-                        allPokemons: newArray
+                        allPokemons: pokeApi
                     }
                 }
                 case 'created':
-                    let newArray = [];
+                    const created = [];
                     for (let i in pokemonsDB) {
-                        if (typeof pokemonsDB[i].id === 'string') newArray.push(pokemonsDB[i])
+                        if (typeof pokemonsDB[i].id === 'string') created.push(pokemonsDB[i])
                     }
                     return {
                         ...state,
-                        allPokemons: newArray
+                        allPokemons: created
                     }
                 default:
                     break;

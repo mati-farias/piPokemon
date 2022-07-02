@@ -22,7 +22,6 @@ const Home = () => {
   // PAGINADO 
   const [currentPage, setCurrentPage] = useState(1)
   const [pokemonsPerPage, setPokemonsPerPage] = useState(12)
-
   const indexOfLastPokemon = currentPage * pokemonsPerPage
   const indexOfFirstPokemon = indexOfLastPokemon - pokemonsPerPage
   let currentPokemons = allPokemons.slice(indexOfFirstPokemon, indexOfLastPokemon)
@@ -37,7 +36,6 @@ const Home = () => {
 
 
   let types = useSelector(state => state.types)
-  console.log(types)
 
   function handleFilterTypes(e) {
     dispatch(filterByTypes(e.target.value))
@@ -105,7 +103,7 @@ const Home = () => {
         
       
         <div>
-              <h3 className="list-title">Lista de Pokemon</h3>
+              <h3 className="list-title">Pokemon's List</h3>
             <div className='paginado'>
                 <Paginado
                   pokemonsPerPage={pokemonsPerPage}
@@ -115,7 +113,7 @@ const Home = () => {
             </div>
                 <div className='container'>
                     <div className='pokemonList'>
-                        <PokeList currentPokemons={currentPokemons} />
+                        {!currentPokemons ? <div>No se encontraron pokemon...</div> : <PokeList currentPokemons={currentPokemons}/>  }
                     </div>
                 </div>
         </div>

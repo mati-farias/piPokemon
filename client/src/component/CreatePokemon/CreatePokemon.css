@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+.formText{
+    font-family: 'Lobster';
+    color: rgba(252, 252, 252, 0.835);
+    font-size: xx-large;
+    letter-spacing: 1px;
+    margin: 0;
+    padding: 0;
+}
+
+.backgroundForm{
+    background-color: rgb(18, 41, 78);
+    background-size: cover;
+    min-height: 100%;
+    min-width: 100%;
+    width: 100%; 
+    height: auto;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px rgba(252, 252, 252, 0.835) solid;
+    max-width: 300px;
+    padding: 0 300px;
+    max-height: auto;
+}
+
+.checkboxTypes{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 30px;
+    grid-auto-rows: minmax(100px, auto);
+}
+
+
+.checkboxChild{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Lobster';
+    color: rgba(65, 128, 131, 0.835);
+    font-size: xx-large;
+    letter-spacing: 1px;
+    margin: 0;
+    padding: 0;
+}
+
+.textForm{
+    font-family: 'Lobster';
+    color: rgba(65, 128, 131, 0.835);
+    font-size: large;
+    letter-spacing: 1px;
+    margin: 0;
+    padding: 0;
+}
+
+.errorBox{
+    width: 100%;
+    color: red;
+}
+
+
+.textCheckBox{
+    font-family: 'Lobster';
+    color: rgb(70 200 121 / 84%);
+    font-size: x-large;
+    letter-spacing: 1px;
+    margin: 0;
+    padding: 0;
+}
+
+form input{
+    padding: 10px 30px;
+    margin: 5px;
+}
+
+.typeError{
+    width: 200px;
+}
+

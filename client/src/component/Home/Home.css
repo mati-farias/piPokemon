@@ -5,7 +5,8 @@
 }
 
 .home {
-    background-image: url('../../images/wallPaperPokebola.jpg');
+    /* background-image: url('../../images/wallpaper.jpg'); */
+    background-color: rgb(18, 41, 78);
     background-size: cover;
     background-position-x: center;
     background-position-y: center;

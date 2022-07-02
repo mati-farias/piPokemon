@@ -3,6 +3,9 @@
     color: white;
     padding: 8px 16px;
     text-decoration: none;
+    border: 1px solid rgb(233, 239, 235);
+    background-color: rgb(25, 26, 127);
+    cursor: pointer;
 }
 
 .ulPagination{

@@ -16,12 +16,11 @@ const PokeDetalle =  (props) => {
   },[dispatch,id])
   
   // let {img, name, types, hp,attack,defense,speed,height,weight} = pokeDetail
-  console.log("pokeDetail",pokeDetail)
-  console.log("types",pokeDetail.types)
   if (!pokeDetail.img){
     pokeDetail.img = imgDefault
   }
   let aux = ""
+  
   
   return (
     <div className='detailBody'>
@@ -30,7 +29,9 @@ const PokeDetalle =  (props) => {
       </div>
       <div className='detailCard'>
         <h2 className='textDetail'>ID: {id}</h2>
-        <img className="detailImg"src={pokeDetail?.img} alt="imagen" />
+        <div>
+          <img className="detailImg"src={pokeDetail?.img} alt="imagen" />
+        </div>
         <h2 className='textDetail'>Name:     {pokeDetail?.name}</h2>
         <h3 className='textDetail'>Type:     {pokeDetail?.types ? pokeDetail.types.map(e => e + " ") : aux }</h3>
         <h3 className='textDetail'>HP:       {pokeDetail?.hp}</h3>

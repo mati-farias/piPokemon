@@ -8,7 +8,7 @@ import imgDefault from '../../images/pokeball-png-45342.png'
 const PokeList = (currentPokemons) => {
 
     // let currentPokemons = useSelector(state => state.allPokemons)
-    console.log("pokelist",currentPokemons.currentPokemons)
+    
     // useEffect(() => {
     //     console.log(currentPokemons)
     //   }, [currentPokemons])

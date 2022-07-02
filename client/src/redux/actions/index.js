@@ -5,7 +5,7 @@ const axios = require('axios');
 export const getAllPokemon = () => {
     return async function (dispatch) {
         let pokemons = await axios.get('http://localhost:3001/pokemons/')
-        console.log(pokemons.data)
+        
         return dispatch({type: GET_ALL_POKEMON, payload: pokemons.data})
     }
 }
@@ -41,8 +41,9 @@ export const filterByOrigin = (payload) => {
 
 export const getPokemonByName = (name) => {
     return async function(dispatch){
-        let pokemon = await axios.get(`http://localhost:3001/pokemons?name=${name}`)
-        return dispatch({type: GET_POKEMON_BY_NAME, payload: pokemon.data})
+        return await axios.get(`http://localhost:3001/pokemons?name=${name}`)
+        .then(pokemon => dispatch({type: GET_POKEMON_BY_NAME, payload: pokemon.data}))
+        .catch(error => alert("No existe ese pokemon!"))
     }
 }
 
