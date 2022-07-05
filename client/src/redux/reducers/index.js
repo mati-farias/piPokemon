@@ -104,7 +104,7 @@ const rootReducer = (state = initialState, action) => {
             function forInTypes() {
                 let newArray = [];
                 for (let i in pokemons) {
-                    pokemons[i].types.map((e) => {
+                    pokemons[i].types.forEach((e) => {
                         if (e === action.payload) {
                             newArray.push(pokemons[i])
                         }

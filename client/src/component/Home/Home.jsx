@@ -7,21 +7,23 @@ import { useState, useEffect  } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Paginado from '../Paginado/Paginado';
 import { filterByTypes, sortBy, filterByOrigin,getAllTypes,getAllPokemon } from '../../redux/actions/index.js'
+import { Spinner } from '../Spinner.jsx/Spinner';
 
 
 
 const Home = () => {
   //traigo el estado actual de pokemons
   const dispatch = useDispatch()
-  
+
   useEffect(() => {
     dispatch(getAllPokemon())
     dispatch(getAllTypes())
   },[dispatch])
+  
   const {allPokemons} = useSelector(state => state)
   // PAGINADO 
   const [currentPage, setCurrentPage] = useState(1)
-  const [pokemonsPerPage, setPokemonsPerPage] = useState(12)
+  const [pokemonsPerPage] = useState(12)
   const indexOfLastPokemon = currentPage * pokemonsPerPage
   const indexOfFirstPokemon = indexOfLastPokemon - pokemonsPerPage
   let currentPokemons = allPokemons.slice(indexOfFirstPokemon, indexOfLastPokemon)
@@ -39,15 +41,18 @@ const Home = () => {
 
   function handleFilterTypes(e) {
     dispatch(filterByTypes(e.target.value))
+    paginado(1)
   }
 
   function handleFilterOrigin(e){
     dispatch(filterByOrigin(e.target.value))
+    paginado(1)
   }
-
+  
   // sort
   function handleSort(e) {
     dispatch(sortBy(e.target.value))
+    paginado(1)
   }
 
 
@@ -72,8 +77,9 @@ const Home = () => {
                   </div>
               
                   <div className='create'>
-                      <Link to="/create" className='linkTitle'><h3 className='text'>Create your own pokemon!</h3></Link>
-                      <Link to="/create" className='linkSubtitle'><h3 className='text'>Click me!</h3></Link>
+                      {/* <Link to="/create" className='linkTitle'><h3 className='text'>Create your own pokemon!</h3></Link> */}
+                      <h3 className='text'>Create your own pokemon!</h3>
+                      <Link to="/create" className='linkSubtitle'><h3 className='textClick'>Click me!</h3></Link>
                   </div>
 
                 <div className='filters'>
@@ -109,11 +115,12 @@ const Home = () => {
                   pokemonsPerPage={pokemonsPerPage}
                   allPokemons={allPokemons.length}
                   paginado={paginado}
+                  currentPage={currentPage}
                 />
             </div>
                 <div className='container'>
                     <div className='pokemonList'>
-                        {!currentPokemons ? <div>No se encontraron pokemon...</div> : <PokeList currentPokemons={currentPokemons}/>  }
+                        {currentPokemons.length > 0 ? <PokeList currentPokemons={currentPokemons}/> : <Spinner /> }
                     </div>
                 </div>
         </div>

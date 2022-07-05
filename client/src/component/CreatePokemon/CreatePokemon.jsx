@@ -66,6 +66,7 @@ const CreatePokemon = () => {
       setErrors(validate({
         ...input,
         types: [...input.types, e.target.value]
+        
       }))
     }
     else {
@@ -83,8 +84,13 @@ const CreatePokemon = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     let errors = Object.keys(validate(input))
+    for (let i in pokemons){
+      if (pokemons[i].name.toLowerCase() === input.name.toLowerCase()){
+        return alert("Pokemon already exists!")
+      }
+    }
     if (errors.length !== 0) {
-      alert('You have a couple of errors.You need to fix them before creating the pokemon!')
+      alert('Something went wrong. Check your answers!')
     }
     else {
       dispatch(createPokemon(input))
@@ -108,7 +114,7 @@ const CreatePokemon = () => {
   return (
     <div className='backgroundForm'>
         <div className='homebutton'>
-          <Link to='/home'>Volver a la página principal</Link>
+          <Link to='/home'>Home page</Link>
         </div>
 
         <div className='formText'>

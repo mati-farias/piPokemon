@@ -18,5 +18,25 @@ describe('Pokemon model', () => {
         Pokemon.create({ name: 'Pikachu' });
       });
     });
+    describe('hp', () => {
+      it('should throw an error if hp is a string', (done) => {
+        Pokemon.create({hp: "hola"})
+          .then(() => done(new Error('HP can not be a string')))
+          .catch(() => done());
+      });
+      it('should work when its a number', () => {
+        Pokemon.create({ hp: 100});
+      });
+    });
+    describe('attack', () => {
+      it('should throw an error if attack is a string', (done) => {
+        Pokemon.create({attack: "hola"})
+          .then(() => done(new Error('attack can not be a string')))
+          .catch(() => done());
+      });
+      it('should work when its a number', () => {
+        Pokemon.create({ attack: 100});
+      });
+    });
   });
 });

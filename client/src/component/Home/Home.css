@@ -48,6 +48,24 @@ ul {
     color: rgba(0, 187, 255, 0.835);
     font-size: xx-large;
     letter-spacing: 1px;
+    transition: 0.5s;
+}
+
+
+
+.textClick{
+    font-family: 'Lobster';
+    color: rgba(0, 187, 255, 0.835);
+    font-size: xx-large;
+    letter-spacing: 1px;
+    transition: 0.5s;
+}
+
+.textClick:hover{
+    font-family: 'Lobster';
+    color: rgba(255, 47, 0, 0.835);
+    font-size: xx-large;
+    letter-spacing: 1px;
 }
 
 .filters{
@@ -82,6 +100,10 @@ ul {
 
 .create{
     margin-left: 290px;
+}
+
+.linkSubtitle:hover{
+    color:brown
 }
 
 .sort{

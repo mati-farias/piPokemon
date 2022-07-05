@@ -24,6 +24,7 @@ router.get("/", async (req, res) => {
         res.send(poke)
         
     } catch (error) {
+        // let poke = ""
         res.status(404).send(error)
     }
 })
@@ -33,8 +34,8 @@ router.get("/", async (req, res) => {
 
 router.post("/", async function(req,res){
 
-    let { name, hp, attack, defense, speed, height, weight, types,img } =
-    req.body;
+    let { name, hp, attack, defense, speed, height, weight, types,img } = req.body;
+    if (!name) return res.status(400).json({ error: "El nombre es obligatorio" });
     if (
         isNaN(hp) ||
         isNaN(attack) ||
@@ -44,7 +45,6 @@ router.post("/", async function(req,res){
         isNaN(weight)
         )
         return res.json({ info: "Todos los argumentos deberían ser número" });
-        if (!name) return res.json({ error: "El nombre es obligatorio" });
         name = name.toLowerCase()
         const existe = await Pokemon.findOne({ where: { name: name } });
         if (existe) return res.json({ error: "El pokemon ya existe" });

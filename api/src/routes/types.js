@@ -2,7 +2,6 @@
 const { Router } = require("express");
 const axios = require('axios')
 const { Type } = require("../db.js");
-const { getPokemonTypes } = require("../methods.js");
 
 const router = Router();
 

@@ -1,5 +1,5 @@
 
-.ulPagination a {
+.liPagination{
     color: white;
     padding: 8px 16px;
     text-decoration: none;
@@ -11,4 +11,14 @@
 .ulPagination{
     display: flex;
     justify-content: center;    
+}
+
+
+.activePage{
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px solid rgb(233, 239, 235);
+    background-color: rgb(152, 28, 11);
+    cursor: pointer;
 }

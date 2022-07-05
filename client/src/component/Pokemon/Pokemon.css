@@ -4,10 +4,22 @@
     border: 1px solid blue;  
     border-radius: 20px;  
     background-color: rgba(34, 127, 181, 0.387);
-    /* margin: auto; */
     width: 30vw;
     margin-bottom: 1rem;
     gap: 1rem;
+    transition: box-shadow 1s;  
+}
+
+.card:hover{
+    display: grid;
+    padding: 5px;
+    border: 1px solid blue;  
+    border-radius: 20px;  
+    background-color: rgba(118, 127, 133, 0.387);
+    width: 30vw;
+    margin-bottom: 1rem;
+    gap: 1rem;
+    box-shadow: 0px 0px 11px rgba(255, 1, 1, 0.2);
 }
 
 
