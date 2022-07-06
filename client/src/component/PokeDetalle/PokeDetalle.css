@@ -42,6 +42,15 @@
     color: rgba(0, 187, 255, 0.835);
     font-size: xx-large;
     letter-spacing: 1px;
+    transition: 0.3s;
+}
+
+.homebutton:hover{
+    text-decoration: none;
+    font-family: 'Lobster';
+    color: rgba(255, 0, 0, 0.835);
+    font-size: xx-large;
+    letter-spacing: 1px;
 }
 
 

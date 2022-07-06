@@ -59,7 +59,7 @@ const Home = () => {
   return (
       <div className='home'>    
         <div className='navbar'>
-            <Navbar />
+            <Navbar paginado={paginado} />
         </div>
         
           <div className='upperContainer'>

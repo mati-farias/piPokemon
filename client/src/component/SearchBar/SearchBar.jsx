@@ -10,13 +10,12 @@ const SearchBar = () => {
   
   const handleOnChange = (e) => {
     e.preventDefault()
-    setName(e.target.value);
-    
+    setName(e.target.value.toLowerCase());
   }
   
   const handleClick = (e) => {
     dispatch(getPokemonByName(name))
-  
+    setName("")
     e.preventDefault()
   }
   

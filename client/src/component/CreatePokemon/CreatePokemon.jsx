@@ -4,19 +4,24 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 import './CreatePokemon.css'
 
-const validate = ({ name, hp, attack, defense, speed, height, weight, image, types }) => {
+const validate = ({ name, hp, attack, defense, speed, height, weight, img, types }) => {
   const errors = {};
-  const regExURL = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png|svg|webp)/g;
+  // const regExURL = /^((https?):\/\/)?([w|W]{3}\.)+[a-zA-Z0-9\-\.]{3,}\.[a-zA-Z]{2,}(\.[a-zA-Z]{2,})?$/;
+  const regExURL = /([a-z\-_0-9\/\:\.]*\.(jpg|jpeg|png|gif))/i
+  const whitespacesParameter = /(?!^\s+$)^.*$/m;
+  const alphabeticalPattern = /^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/;
+
 
   if (!name) errors.name = 'Name is required';
-  if (!types || types.length === 0 || types.length > 2) { console.log("hey"); errors.types = "Types is required and it can't be longer than 2" };
-  if (!hp || hp > 3000) errors.hp = 'HP is required and must be a NUMBER smaller than 3000';
-  if (!attack || attack === 'e' || attack > 1000) errors.attack = 'Attack is required and must be a NUMBER smaller than 1000';
-  if (!defense || defense === 'e' || defense > 1000) errors.defense = 'Defense is required and must be a NUMBER  smaller than 1000';
-  if (!speed || speed === 'e' || speed > 500) errors.speed = 'Speed is required and must be a NUMBER  smaller than 500';
-  if (!height || height === 'e' || height > 300) errors.height = 'Height is required and must be a NUMBER  smaller than 300';
-  if (!weight || weight === 'e' || weight > 300) errors.weight = 'Weight is required and must be a NUMBER  smaller than 300';
-  if (image.length > 0 && image.search(regExURL) === -1) errors.image = "Image must be a valid url or left empty";
+  if (!whitespacesParameter.test(name) || !alphabeticalPattern.test(name)) errors.name = 'It should be a valid name'
+  if (!types || types.length === 0 || types.length > 2) errors.types = "Types is required and it can't be longer than 2";
+  if (!hp || hp > 3000 || hp < 0) errors.hp = 'HP is required and must be a positive NUMBER smaller than 3000';
+  if (!attack || attack === 'e' || attack > 1000 || attack < 0) errors.attack = 'Attack is required and must be a positive NUMBER smaller than 1000';
+  if (!defense || defense === 'e' || defense > 1000 || defense < 0) errors.defense = 'Defense is required and must be a positive NUMBER  smaller than 1000';
+  if (!speed || speed === 'e' || speed > 500 || speed < 0) errors.speed = 'Speed is required and must be a positive NUMBER smaller than 500';
+  if (!height || height === 'e' || height > 300 || height < 0) errors.height = 'Height is required and must be a positive NUMBER smaller than 300';
+  if (!weight || weight === 'e' || weight > 300 || weight < 0) errors.weight = 'Weight is required and must be a positive NUMBER smaller than 300';
+  if (img.length > 0 && img.search(regExURL) === -1) errors.img = "Image must be a valid url or left empty";
 
   return errors
 
@@ -41,7 +46,7 @@ const CreatePokemon = () => {
     speed: "",
     height: "",
     weight: "",
-    image: ""
+    img: ""
   })
   const [errors, setErrors] = useState({})
 
@@ -55,9 +60,10 @@ const CreatePokemon = () => {
       [e.target.name]: e.target.value
     }))
   }
-  
+
   const handleCheckbox = (e) => {
     if (e.target.checked && !input.types.includes(e.target.value) && input.types.length < 2) {
+      console.log(e.target.checked)
       setInput({
         ...input,
         types: [...input.types, e.target.value]
@@ -66,7 +72,7 @@ const CreatePokemon = () => {
       setErrors(validate({
         ...input,
         types: [...input.types, e.target.value]
-        
+
       }))
     }
     else {
@@ -78,14 +84,14 @@ const CreatePokemon = () => {
       setErrors(validate({
         ...input,
         types: filtered
-      })) 
+      }))
     }
   }
   const handleSubmit = (e) => {
     e.preventDefault()
     let errors = Object.keys(validate(input))
-    for (let i in pokemons){
-      if (pokemons[i].name.toLowerCase() === input.name.toLowerCase()){
+    for (let i in pokemons) {
+      if (pokemons[i].name.toLowerCase() === input.name.toLowerCase()) {
         return alert("Pokemon already exists!")
       }
     }
@@ -105,7 +111,7 @@ const CreatePokemon = () => {
         speed: "",
         height: "",
         weight: "",
-        image: ""
+        img: ""
       })
       history.push('/home')
     }
@@ -113,18 +119,18 @@ const CreatePokemon = () => {
 
   return (
     <div className='backgroundForm'>
-        <div className='homebutton'>
-          <Link to='/home'>Home page</Link>
-        </div>
+      <div className='homebutton'>
+        <Link to='/home' className='linkHome'>Home page</Link>
+      </div>
 
-        <div className='formText'>
-          <h1>Create your own Pokemon!</h1>
-        </div>
+      <div className='formText'>
+        <h1>Create your own Pokemon!</h1>
+      </div>
 
       <form className='form' onSubmit={handleSubmit}>
 
         <div>
-          <input type="text" placeholder='Name!' className="form-input"onChange={(e) => handleInputChange(e)} name="name" value={input.name}
+          <input type="text" placeholder='Name!' className="form-input" onChange={(e) => handleInputChange(e)} name="name" value={input.name}
           />
           <div className='errorBox'>
             {errors.name && <p>{errors.name}</p>}
@@ -132,7 +138,7 @@ const CreatePokemon = () => {
         </div>
 
 
-          <h4 className="textCheckBox">Choose your pokemon's types!</h4>
+        <h4 className="textCheckBox">Choose your pokemon's types!</h4>
         <div className='checkboxTypes'>
           {
             types.map((e) => {
@@ -148,12 +154,12 @@ const CreatePokemon = () => {
         </div>
         <div className='typeError'>
           <div className='errorBox'>
-           {errors.types && <p>{errors.types}</p>}
+            {errors.types && <p>{errors.types}</p>}
           </div>
         </div>
-          <div className='formText'>
-            {input.types.map(e => e + ", ")}
-          </div>
+        <div className='formText'>
+          {input.types.map(e => e + ", ")}
+        </div>
 
 
 
@@ -194,7 +200,7 @@ const CreatePokemon = () => {
           </div>
         </div>
         <div>
-          <input type="text" placeholder='It can be an url or just leave it empty!' className='form-input' onChange={handleInputChange} name="image" value={input.image} />
+          <input type="text" placeholder='It can be an url or just leave it empty!' className='form-input' onChange={handleInputChange} name="img" value={input.img} />
           <div className='errorBox'>
             {errors.image && <p>{errors.image}</p>}
           </div>

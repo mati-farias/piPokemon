@@ -1,4 +1,4 @@
-import { GET_ALL_POKEMON, GET_POKEMON_DETAIL, CREATE_POKEMON, GET_ALL_TYPES, FILTER_BY_TYPES, GET_POKEMON_BY_NAME, SORT_BY, FILTER_BY_ORIGIN } from '../actions/actionTypes';
+import { GET_ALL_POKEMON, GET_POKEMON_DETAIL, CREATE_POKEMON, GET_ALL_TYPES, FILTER_BY_TYPES, GET_POKEMON_BY_NAME, SORT_BY, FILTER_BY_ORIGIN, SET_POKEMON_DETAILS } from '../actions/actionTypes';
 
 const initialState = {
     pokemons: [],
@@ -38,11 +38,11 @@ const rootReducer = (state = initialState, action) => {
         case CREATE_POKEMON:
             return {
                 ...state,
-                allPokemon: [...state.allPokemons,action.payload]
+                allPokemon: [...state.allPokemons, action.payload]
             }
         case SORT_BY: {
             var parameters;
-          
+
             switch (action.payload) {
                 case 'AZ':
                     parameters = function (a, b) {
@@ -130,7 +130,7 @@ const rootReducer = (state = initialState, action) => {
                 case 'pokeApi': {
                     const pokeApi = [];
                     for (let i in pokemonsDB) {
-                       
+
                         if (typeof pokemonsDB[i].id !== 'string') {
                             pokeApi.push(pokemonsDB[i])
                         }
@@ -153,6 +153,13 @@ const rootReducer = (state = initialState, action) => {
                     break;
             }
         }
+        case SET_POKEMON_DETAILS: {
+            return {
+                ...state,
+                pokeDetail: {}
+            }
+        }
+
         default:
             return { ...state }
     }

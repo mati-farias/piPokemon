@@ -5,7 +5,6 @@ import imgDefault from '../../images/pokeball-png-45342.png'
 
 
 const PokeList = (currentPokemons) => {
-
     
     return (
         <div className='pokelist'>

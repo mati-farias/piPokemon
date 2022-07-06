@@ -55,6 +55,17 @@
     padding: 0;
 }
 
+.linkHome{
+    text-decoration: none;
+    color: rgba(0, 187, 255, 0.835);
+    transition: 0.3s;
+}
+.linkHome:hover{
+    text-decoration: none;
+    color: rgb(255, 0, 0);
+    
+}
+
 .textForm{
     font-family: 'Lobster';
     color: rgba(65, 128, 131, 0.835);
@@ -87,4 +98,5 @@ form input{
 .typeError{
     width: 200px;
 }
+
 

@@ -10,7 +10,7 @@ const Pokemon = (props) => {
         <div className="pokemon">
             <ul className='list'>
                 <Link to={`home/${id}`} className="link">
-                    <li >
+                    <li>
                         <div className='card'>
                             <div>
                                 <img className="pokeImg" src={img} alt="imagen pokemon" />
@@ -19,7 +19,7 @@ const Pokemon = (props) => {
                                 <h3 className='name'>{name}</h3>
                                 <h4 className='types'>
                                     {
-                                        types.map(t => t + " ")
+                                        types.map(t => t.name? t.name + " " : t + " ")
                                     }
                                 </h4>
                             </div>

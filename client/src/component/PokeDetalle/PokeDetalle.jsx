@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { getPokemonDetail } from '../../redux/actions';
+import { getPokemonDetail, setPokemonDetails } from '../../redux/actions';
 import imgDefault from '../../images/pokeball-png-45342.png';
 import { Link } from 'react-router-dom'
 import './PokeDetalle.css'
@@ -14,6 +14,9 @@ const PokeDetalle =  (props) => {
   
   useEffect(() => {
     dispatch(getPokemonDetail(id))
+    return () => {
+      dispatch(setPokemonDetails())
+    }
   },[dispatch,id])
   
   // let {img, name, types, hp,attack,defense,speed,height,weight} = pokeDetail
@@ -27,7 +30,7 @@ const PokeDetalle =  (props) => {
           <Link to='/home' className='homebutton'>Home</Link>
         </div>
         {
-          pokeDetail ?
+          pokeDetail.name ?
           <div className='detailCard'>
             <h2 className='textDetail'>ID: {id}</h2>
             <div>

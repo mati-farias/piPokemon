@@ -5,7 +5,7 @@ const { Pokemon, Type } = require("./db.js");
 
 
 const getPokemons = async function () {
-  const api = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=100");
+  const api = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=40");
   // const first20 = await axios.get('https://pokeapi.co/api/v2/pokemon%27')
   // const second20 = await axios.get(first20.data.next)
   // const totalPokeApi = first20.data.results.concat(second20.data.results)
@@ -53,7 +53,8 @@ const getPokemons = async function () {
       speed: e.speed,
       height: e.height,
       weight: e.weight,
-      types: e.types.map(e => e.name)
+      types: e.types.map(e => e.name),
+      img: e.img
     }
   })
 
