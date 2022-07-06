@@ -35,7 +35,6 @@ router.get("/", async (req, res) => {
 router.post("/", async function (req, res) {
 
     let { name, hp, attack, defense, speed, height, weight, types, img } = req.body;
-    console.log("IMG", img)
     if (!name) return res.status(400).json({ error: "El nombre es obligatorio" });
     if (
         isNaN(hp) ||
@@ -65,7 +64,7 @@ router.post("/", async function (req, res) {
 
         let typeDB = await Type.findAll({ where: { name: types.map(e => e) } })
         // let typesArray = typeDB.map(e => e.name)
-        console.log(pokemon)
+        
         await pokemon.addTypes(typeDB)
         res.json({ info: "Pokemon creado" });
     } catch (error) {

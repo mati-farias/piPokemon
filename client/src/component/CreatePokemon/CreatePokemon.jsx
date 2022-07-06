@@ -62,8 +62,7 @@ const CreatePokemon = () => {
   }
 
   const handleCheckbox = (e) => {
-    if (e.target.checked && !input.types.includes(e.target.value) && input.types.length < 2) {
-      console.log(e.target.checked)
+    if (e.target.checked && !input.types.includes(e.target.value)) {
       setInput({
         ...input,
         types: [...input.types, e.target.value]
@@ -144,7 +143,7 @@ const CreatePokemon = () => {
             types.map((e) => {
               return (
                 <div key={e.id} className="checkboxChild">
-                  <input type="checkbox" id={e.id} onChange={handleCheckbox} value={e.name} />
+                  <input type="checkbox"  id={e.id} onChange={handleCheckbox} value={e.name} />
                   <label>{e.name}</label>
                 </div>
               )
