@@ -54,7 +54,8 @@ const getPokemons = async function () {
       height: e.height,
       weight: e.weight,
       types: e.types.map(e => e.name),
-      img: e.img
+      img: e.img,
+      createdBy: e.createdBy
     }
   })
 

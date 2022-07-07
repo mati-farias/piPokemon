@@ -14,7 +14,7 @@ function App() {
             <Route exact path="/" component={Landing}/>
             <Route exact path="/create" component={CreatePokemon}/>
             <Route exact path="/home" component={Home}/>
-            <Route exact path="/home/:id" component={PokeDetalle}/> 
+            <Route exact path="/home/:id" component={PokeDetalle}/>
           </React.Fragment>
       </div>
    

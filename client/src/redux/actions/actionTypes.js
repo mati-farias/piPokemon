@@ -7,3 +7,4 @@ export const FILTER_BY_ORIGIN = 'FILTER_BY_ORIGIN'
 export const GET_POKEMON_BY_NAME = 'GET_POKEMON_BY_NAME';
 export const SORT_BY = 'SORT_BY';
 export const SET_POKEMON_DETAILS = 'SET_POKEMON_DETAILS'
+export const LOADING = 'LOADING'

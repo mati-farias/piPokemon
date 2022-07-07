@@ -99,7 +99,6 @@ const CreatePokemon = () => {
     }
     else {
       dispatch(createPokemon(input))
-      pokemons.push(input)
       alert("Pokemon created succesfully")
       setInput({
         name: "",

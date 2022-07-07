@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import './Pokemon.css'
 
 const Pokemon = (props) => {
-    let { img, name, types, id } = props
+    let { img, name, types, id} = props
 
     name = name.charAt(0).toUpperCase() + name.slice(1)
     return (

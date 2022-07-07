@@ -19,12 +19,10 @@ router.get("/", async (req, res) => {
             }
         }
 
-
         let poke = await getPokemons()
         res.send(poke)
 
     } catch (error) {
-        // let poke = ""
         res.status(404).send(error)
     }
 })
@@ -121,5 +119,6 @@ router.get("/:idPokemon", async function (req, res) {
         res.status(404).send("No se encontró pokemon con ese ID")
     }
 })
+
 
 module.exports = router;

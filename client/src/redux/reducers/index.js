@@ -5,7 +5,8 @@ const initialState = {
     allPokemons: [],
     pokeDetail: {},
     types: [],
-    pokeByName: {}
+    pokeByName: {},
+    loading: true
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -14,7 +15,8 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 allPokemons: action.payload,
-                pokemons: action.payload
+                pokemons: action.payload,
+                loading: false
             }
         }
         case GET_POKEMON_DETAIL: {
@@ -119,6 +121,12 @@ const rootReducer = (state = initialState, action) => {
                 allPokemons: statusFiltered
             }
         }
+        case SET_POKEMON_DETAILS: {
+            return {
+                ...state,
+                pokeDetail: {}
+            }
+        }
         case FILTER_BY_ORIGIN: {
             const pokemonsDB = state.pokemons
             switch (action.payload) {
@@ -153,13 +161,6 @@ const rootReducer = (state = initialState, action) => {
                     break;
             }
         }
-        case SET_POKEMON_DETAILS: {
-            return {
-                ...state,
-                pokeDetail: {}
-            }
-        }
-
         default:
             return { ...state }
     }
