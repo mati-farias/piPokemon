@@ -7,14 +7,14 @@ export const getAllPokemon = () => {
         dispatch({
             type: LOADING
         })
-        let pokemons = await axios.get('http://localhost:3001/pokemons/')
+        let pokemons = await axios.get('/pokemons')
         return dispatch({ type: GET_ALL_POKEMON, payload: pokemons.data })
     }
 }
 export const getPokemonDetail = (id) => {
     return async function (dispatch) {
         try{
-            let pokemon = await axios.get(`http://localhost:3001/pokemons/${id}`)
+            let pokemon = await axios.get(`/pokemons/${id}`)
             return dispatch({ type: GET_POKEMON_DETAIL, payload: pokemon.data })
         }catch(err){
             alert("pokemon no encontrado")
@@ -25,7 +25,7 @@ export const getPokemonDetail = (id) => {
 
 export const getAllTypes = () => {
     return async function (dispatch) {
-        let types = await axios.get('http://localhost:3001/types/')
+        let types = await axios.get('/types')
         return dispatch({ type: GET_ALL_TYPES, payload: types.data })
     }
 }
@@ -48,7 +48,7 @@ export const filterByOrigin = (payload) => {
 
 export const getPokemonByName = (name) => {
     return async function (dispatch) {
-        return await axios.get(`http://localhost:3001/pokemons?name=${name}`)
+        return await axios.get(`/pokemons?name=${name}`)
             .then(pokemon => dispatch({ type: GET_POKEMON_BY_NAME, payload: pokemon.data }))
             .catch(error => alert("No existe ese pokemon!"))
     }
@@ -62,7 +62,7 @@ export const sortBy = (payload) => {
 
 export const createPokemon = (payload) => {
     return function (dispatch) {
-        let response = axios.post('http://localhost:3001/pokemons/', payload)
+        let response = axios.post('/pokemons/', payload)
         return dispatch({ type: CREATE_POKEMON, payload: response.data })
     }
 }
