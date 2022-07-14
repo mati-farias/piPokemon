@@ -101,9 +101,18 @@ const getPokemonByName = async function (name) {
   if (db[0]) {
     return db
   }
-  else {
-    let respuesta = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
-    let nameAPI = respuesta.data
+   else {
+     let respuesta = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
+     let nameAPI = respuesta.data
+  // else {
+  //   let respuesta = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
+  //   let nameAPI = respuesta.data
+
+  //   return axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`)
+  //   .then(data => ({
+  //     id: data.id,
+  //     name: data.name,
+  //   }))
 
     if (nameAPI) {
       finalName = nameAPI

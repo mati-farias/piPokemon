@@ -1,4 +1,4 @@
-import { GET_ALL_POKEMON, GET_POKEMON_DETAIL, CREATE_POKEMON, GET_ALL_TYPES, FILTER_BY_TYPES, GET_POKEMON_BY_NAME, SORT_BY, FILTER_BY_ORIGIN, SET_POKEMON_DETAILS } from '../actions/actionTypes';
+import { GET_ALL_POKEMON, GET_POKEMON_DETAIL, CREATE_POKEMON, GET_ALL_TYPES, FILTER_BY_TYPES, GET_POKEMON_BY_NAME, SORT_BY, FILTER_BY_ORIGIN, SET_POKEMON_DETAILS,FILTER_BY_DEFENSE } from '../actions/actionTypes';
 
 const initialState = {
     pokemons: [],
@@ -99,6 +99,7 @@ const rootReducer = (state = initialState, action) => {
                 allPokemons: state.allPokemons.sort(parameters)
             }
         }
+   
         case FILTER_BY_TYPES: {
             const pokemons = state.pokemons
             const statusFiltered = action.payload === 'All' ? pokemons : forInTypes();

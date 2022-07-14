@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { createPokemon } from '../../redux/actions/index.js'
+import { createPokemon, getAllPokemon } from '../../redux/actions/index.js'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 import './CreatePokemon.css'
@@ -111,6 +111,7 @@ const CreatePokemon = () => {
         weight: "",
         img: ""
       })
+      dispatch(getAllPokemon())
       history.push('/home')
     }
   }

@@ -16,13 +16,13 @@ const Home = () => {
   const dispatch = useDispatch()
 
   const loading = useSelector(state => state.loading)
+  const { allPokemons } = useSelector(state => state)
 
   useEffect(() => {
     if (!allPokemons.length) dispatch(getAllPokemon())
     dispatch(getAllTypes())
   }, [dispatch])
 
-  const { allPokemons } = useSelector(state => state)
   // PAGINADO 
   const [currentPage, setCurrentPage] = useState(1)
   const [pokemonsPerPage] = useState(12)
@@ -40,6 +40,8 @@ const Home = () => {
 
 
   let types = useSelector(state => state.types)
+
+  //
 
   function handleFilterTypes(e) {
     dispatch(filterByTypes(e.target.value))

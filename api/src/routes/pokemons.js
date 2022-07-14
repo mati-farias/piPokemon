@@ -62,7 +62,7 @@ router.post("/", async function (req, res) {
 
         let typeDB = await Type.findAll({ where: { name: types.map(e => e) } })
         // let typesArray = typeDB.map(e => e.name)
-        
+
         await pokemon.addTypes(typeDB)
         res.json({ info: "Pokemon creado" });
     } catch (error) {
@@ -120,5 +120,44 @@ router.get("/:idPokemon", async function (req, res) {
     }
 })
 
+
+router.delete("/:idPokemon", async function (req, res) {
+    const { idPokemon } = req.params
+    console.log("ID", idPokemon)
+    try {
+        let db = await Pokemon.findByPk(idPokemon)
+
+        await db.destroy()
+        res.status(200).send("Murió!")
+
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+router.put("/:idPokemon", async (req,res) => {
+    try {
+        let { idPokemon } = req.params;
+        let {name,hp,attack,defense,speed,height,weight} = req.body
+        let pokeToUpdate = await Pokemon.findByPk(idPokemon)
+
+        let newPoke = {
+            name,
+            hp,
+            attack,
+            defense,
+            speed,
+            height,
+            weight,
+          
+        }
+
+        let updated = await pokeToUpdate.update(newPoke)
+        updated.addType("water")
+        return res.status(200).send(updated)
+    } catch (error) {
+        console.log(error)
+    }
+})
 
 module.exports = router;
